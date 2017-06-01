@@ -206,7 +206,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1101749917693204}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.299, z: 0}
+  m_LocalPosition: {x: 0, y: -0.249, z: 0.387}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4794878657062378}
@@ -399,7 +399,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   genPos: {fileID: 4095800725122172}
-  starPrefab: {fileID: 1286365233776042, guid: aaaf89d8fd59341d998735bd38b520a3, type: 2}
+  diamondrefab: {fileID: 1018664768383254, guid: a62353e971f43493ba7fed5cd40e1749,
+    type: 2}
 --- !u!114 &114140839532594484
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -413,9 +414,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 3.5
   isJump: 0
-  horizontalBtn:
-  - {fileID: 0}
-  - {fileID: 0}
   _spriteRender:
   - {fileID: 212152615880136090}
   - {fileID: 212426915342089830}

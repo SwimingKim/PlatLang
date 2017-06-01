@@ -11,8 +11,7 @@ TagManager:
   - elementText
   - amountText
   - Hp
-  - Ground
-  - Box
+  - Star
   layers:
   - Default
   - TransparentFX
@@ -58,6 +57,9 @@ TagManager:
     locked: 0
   - name: Item
     uniqueID: 4059196067
+    locked: 0
+  - name: Box
+    uniqueID: 754719643
     locked: 0
   - name: Characters
     uniqueID: 3940858523

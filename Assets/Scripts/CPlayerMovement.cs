@@ -98,7 +98,7 @@ public class CPlayerMovement : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.name == "Event")
+        if (other.gameObject.name == "CEvent")
         {
             stageManager.ShowEventButton();
             Destroy(other.gameObject);
@@ -107,7 +107,7 @@ public class CPlayerMovement : MonoBehaviour
 
     void OnCollisionStay2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Ground" || other.gameObject.tag == "Box")
+        if (other.gameObject.name == "Ground" || other.gameObject.name == "Box")
         {
             _anim.GroundSetting(true);
 
@@ -117,19 +117,11 @@ public class CPlayerMovement : MonoBehaviour
 
     void OnCollisionExit2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Ground" ||
-        other.gameObject.tag == "Box")
+        if (other.gameObject.name == "Ground" || other.gameObject.name == "Box")
         {
             _anim.GroundSetting(false);
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "Box")
-        {
-            Destroy(other.gameObject);
-        }
-    }
 
 }

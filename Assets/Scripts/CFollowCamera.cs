@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CFollowCamera : MonoBehaviour {
 
-	public CStageManager stageManager;
+	public CStageTimer stageTimer;
 
 	public Transform _targetPlayer;
 	public Vector3 _offset;
@@ -12,7 +12,7 @@ public class CFollowCamera : MonoBehaviour {
 
 	void FixedUpdate()
 	{
-		if (!stageManager.IsLoading && _targetPlayer)
+		if (!stageTimer.IsLoading && _targetPlayer)
 		{
 			Vector3 targetPos = new Vector3(_targetPlayer.position.x, _targetPlayer.position.y, transform.position.z);
 
