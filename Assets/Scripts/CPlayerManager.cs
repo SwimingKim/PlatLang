@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class CPlayerManager : MonoBehaviour {
 
-	public CStageManager stageManager;
+	public GameObject stageManager;
 
 	public void StarUpByManager()
 	{
-        stageManager.StarCountUp();
+        stageManager.GetComponent<CStageManager>().StarCountUp();
 	}
 
 	public void WordEarnByManager()
 	{
-		
+		stageManager.GetComponent<CLanguageManager>().EarnWordItem(0);	
 	}
 
 }

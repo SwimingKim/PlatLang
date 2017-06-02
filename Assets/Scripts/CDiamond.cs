@@ -33,7 +33,13 @@ public class CDiamond : MonoBehaviour {
 			other.gameObject.GetComponent<CBox>().Destroy();
 			Destroy(gameObject);
 		}
+
+		else if (other.name == "Ground")
+		{
+			Destroy(gameObject);
+		}
 	}
+
 
 	void Destroy()
 	{

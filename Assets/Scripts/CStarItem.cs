@@ -11,8 +11,7 @@ public class CStarItem : MonoBehaviour
         {
             Destroy(gameObject);
 
-			// 추후 수정
-			other.SendMessage("SendMessageToMessage");
+            other.GetComponent<CPlayerManager>().StarUpByManager();
         }
     }
 

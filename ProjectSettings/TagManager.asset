@@ -12,6 +12,8 @@ TagManager:
   - amountText
   - Hp
   - Star
+  - Box
+  - Foreground
   layers:
   - Default
   - TransparentFX
@@ -66,9 +68,6 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 771169021
-    locked: 0
-  - name: Tile
-    uniqueID: 2981521409
     locked: 0
   - name: Effect
     uniqueID: 2082762175

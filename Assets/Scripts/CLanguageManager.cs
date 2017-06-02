@@ -46,11 +46,10 @@ public class CLanguageManager : MonoBehaviour
         // StudyPanel 세팅
         _studyItems = _studyPanel.GetComponentsInChildren<Button>();
         // 단어 학습 전으로 돌리기
-        // foreach (Button item in _studyItems)
-        // {
-        //     item.image.sprite = item.spriteState.pressedSprite;
-        //     Debug.Log("이미지 변경");
-        // }
+        foreach (Button item in _studyItems)
+        {
+            item.enabled = false;
+        }
         Button[] studyButtons = _studyPanel.GetComponentsInChildren<Button>();
         foreach (Button item in studyButtons)
         {
@@ -100,6 +99,12 @@ public class CLanguageManager : MonoBehaviour
                 wordData["사슴"] = "しか[鹿]";
                 break;
         }
+    }
+
+    public void EarnWordItem(int index)
+    {
+        _studyItems[0].enabled = true;
+        _studyItems[0].image.sprite = _studyItems[0].spriteState.pressedSprite;
     }
 
     public void ShowWord(int order)
@@ -165,6 +170,7 @@ public class CLanguageManager : MonoBehaviour
             item.enabled = true;
         }
     }
+
 
 
 }

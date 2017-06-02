@@ -10,7 +10,9 @@ public class CWordItem : MonoBehaviour {
 		{
 			Destroy(gameObject);
 
-			
+			other.GetComponent<CPlayerManager>().WordEarnByManager();
+
+			Debug.Log("단어 얻음");
 		}
 	}
 

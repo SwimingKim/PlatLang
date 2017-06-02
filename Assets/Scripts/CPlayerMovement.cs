@@ -9,6 +9,9 @@ public class CPlayerMovement : MonoBehaviour
     public float _speed;
     float h;
 
+    float actionDelayTime = 0.8f;
+    float actionTimer;
+
     public bool isJump = false;
 
     CPlayerAnimation _anim;
@@ -27,12 +30,14 @@ public class CPlayerMovement : MonoBehaviour
 
     void Update()
     {
+        actionTimer += Time.deltaTime;
+
         // 에디터 상에서 확인
-        if (Input.GetKeyDown(KeyCode.A)) PressKey(1);
-        else if (Input.GetKeyDown(KeyCode.S)) PressKey(2);
-        else if (Input.GetKeyDown(KeyCode.D)) PressKey(3);
-        else if (Input.GetKeyDown(KeyCode.F)) PressKey(4);
-        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S)) StopMove();
+        if (Input.GetKeyDown(KeyCode.LeftArrow)) PressKey(1);
+        else if (Input.GetKeyDown(KeyCode.RightArrow)) PressKey(2);
+        else if (Input.GetKeyDown(KeyCode.Z)) PressKey(3);
+        else if (Input.GetKeyDown(KeyCode.X)) PressKey(4);
+        if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow)) StopMove();
 
         InputMove();
     }
@@ -51,7 +56,12 @@ public class CPlayerMovement : MonoBehaviour
                 InputJump();
                 break;
             case 4: //down
-                stageManager.InputAction();
+                if (actionTimer >= actionDelayTime && CGameManager.instance.stage == 1)
+                {
+                    stageManager.InputAction();
+                    
+                    actionTimer = 0f;
+                }
                 break;
         }
     }
