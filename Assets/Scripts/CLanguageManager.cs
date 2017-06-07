@@ -141,6 +141,8 @@ public class CLanguageManager : MonoBehaviour
             _speakTxt = _wordText.text.Split('[')[0];
         }
         Debug.Log(_wordText.text + " : " + _speakTxt);
+
+        SpeakWord();
     }
 
     public void HideWord()
@@ -163,8 +165,9 @@ public class CLanguageManager : MonoBehaviour
             item.enabled = false;
         }
 
-        yield return new WaitForSeconds(3f);
-
+        yield return new WaitForSeconds(2f);
+        
+        HideWord();
         foreach (Button item in _noOverlaps)
         {
             item.enabled = true;

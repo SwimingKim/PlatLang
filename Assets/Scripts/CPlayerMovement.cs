@@ -28,6 +28,15 @@ public class CPlayerMovement : MonoBehaviour
         _anim = GetComponent<CPlayerAnimation>();
     }
 
+    void Start()
+    {
+        // 오른쪽으로 바라보게 만들기
+        for (int i = 0; i < _spriteRender.Length; i++)
+        {
+            _spriteRender[i].flipX = true;
+        }
+    }
+
     void Update()
     {
         actionTimer += Time.deltaTime;
@@ -59,7 +68,7 @@ public class CPlayerMovement : MonoBehaviour
                 if (actionTimer >= actionDelayTime && CGameManager.instance.stage == 1)
                 {
                     stageManager.InputAction();
-                    
+
                     actionTimer = 0f;
                 }
                 break;

@@ -19,10 +19,12 @@ public class CGameManager : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha0)) LoadScene(0);        
         if (Input.GetKeyDown(KeyCode.Alpha1)) LoadScene(1);
         if (Input.GetKeyDown(KeyCode.Alpha2)) LoadScene(2);
         if (Input.GetKeyDown(KeyCode.Alpha3)) LoadScene(3);
         if (Input.GetKeyDown(KeyCode.Alpha4)) LoadScene(4);
+        if (Input.GetKeyDown(KeyCode.Alpha5)) LoadScene(5);
     }
 
     public void LoadScene(int SceneNum)
@@ -48,6 +50,9 @@ public class CGameManager : MonoBehaviour
             case 4: // Smash
                 SceneManager.LoadScene("Smash");
                 CSoundManager.instance.PlayStart();
+                break;
+            case 5 :
+                SceneManager.LoadScene("End");
                 break;
         }
 
