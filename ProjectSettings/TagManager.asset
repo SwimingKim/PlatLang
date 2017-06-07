@@ -72,3 +72,6 @@ TagManager:
   - name: Effect
     uniqueID: 2082762175
     locked: 0
+  - name: Disapper
+    uniqueID: 1787937767
+    locked: 0

@@ -74,28 +74,28 @@ public class CLanguageManager : MonoBehaviour
             case 0:
                 _lang = LANGTYPE.ENG;
                 EasyTTSUtil.Initialize(EasyTTSUtil.UnitedStates);
+                wordData["호랑이"] = "Tiger";
                 wordData["원숭이"] = "Monkey";
                 wordData["토끼"] = "Rabit";
                 wordData["돌고래"] = "Dolphin";
-                wordData["호랑이"] = "Tiger";
                 wordData["사슴"] = "Deer";
                 break;
             case 1:
                 _lang = LANGTYPE.CH;
                 EasyTTSUtil.Initialize(EasyTTSUtil.China);
+                wordData["호랑이"] = "老虎[lǎohǔ]";
                 wordData["원숭이"] = "猴子[hóuzi]";
                 wordData["토끼"] = "兔子[tùzi]";
                 wordData["돌고래"] = "海豚[hǎitún]";
-                wordData["호랑이"] = "老虎[lǎohǔ]";
                 wordData["사슴"] = "鹿[lù]";
                 break;
             case 2:
                 _lang = LANGTYPE.JP;
                 EasyTTSUtil.Initialize(EasyTTSUtil.Japan);
+                wordData["호랑이"] = "とら[虎]";
                 wordData["원숭이"] = "さる[猿]";
                 wordData["토끼"] = "うさぎ[兎、兔]";
                 wordData["돌고래"] = "いるか[海豚]";
-                wordData["호랑이"] = "とら[虎]";
                 wordData["사슴"] = "しか[鹿]";
                 break;
         }
@@ -115,13 +115,13 @@ public class CLanguageManager : MonoBehaviour
                 _koreanTxt = "원숭이";
                 break;
             case 1:
-                _koreanTxt = "토끼";
+                _koreanTxt = "호랑이";
                 break;
             case 2:
                 _koreanTxt = "돌고래";
                 break;
             case 3:
-                _koreanTxt = "호랑이";
+                _koreanTxt = "토끼";
                 break;
             case 4:
                 _koreanTxt = "사슴";
