@@ -12,13 +12,18 @@ public class CPlayerMovement : MonoBehaviour
     float actionDelayTime = 0.4f;
     float actionTimer;
 
+    private bool isGround = false;
+    public Transform groundCheck;
+
     public bool isJump = false;
+    public float jumpPower = 680f;
 
     CPlayerAnimation _anim;
 
     Rigidbody2D _rigidbody2d;
     Animator _animator;
     public SpriteRenderer[] _spriteRender;
+    private bool isRight = false;
 
     public CStageManager stageManager;
 
@@ -30,11 +35,7 @@ public class CPlayerMovement : MonoBehaviour
 
     void Start()
     {
-        // 오른쪽으로 바라보게 만들기
-        for (int i = 0; i < _spriteRender.Length; i++)
-        {
-            _spriteRender[i].flipX = true;
-        }
+        Flip();
     }
 
     void Update()
@@ -48,7 +49,18 @@ public class CPlayerMovement : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.X)) PressKey(4);
         if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow)) StopMove();
 
-        InputMove();
+        // 땅에 접촉하는지 체크
+        isGround = CheckGround();
+    }
+
+    void FixedUpdate()
+    {
+        MoveAction();
+
+        if (isJump)
+        {
+            JumpAction(this.jumpPower);
+        }
     }
 
     public void PressKey(int nKey)
@@ -61,10 +73,10 @@ public class CPlayerMovement : MonoBehaviour
             case 2: //right
                 h = 1;
                 break;
-            case 3: //up
-                InputJump();
+            case 3:
+                if (isGround) isJump = true;
                 break;
-            case 4: //down
+            case 4:
                 if (actionTimer >= actionDelayTime && CGameManager.instance.stage == 1)
                 {
                     stageManager.InputAction();
@@ -75,29 +87,23 @@ public class CPlayerMovement : MonoBehaviour
         }
     }
 
-    public void InputJump()
+    public void JumpAction(float jumpPower)
     {
-        Debug.Log(isJump);
-        if (!isJump)
-        {
-            _anim.PlayAnimation(CPlayerAnimation.ANIM_TYPE.JUMP);
-            _rigidbody2d.velocity = new Vector2(_rigidbody2d.velocity.x, 0f);
-            _rigidbody2d.AddForce(Vector2.up * 600f);
+        isJump = false;
 
-            isJump = true;
-        }
+        _anim.PlayAnimation(CPlayerAnimation.ANIM_TYPE.JUMP);
+        _rigidbody2d.velocity = new Vector2(_rigidbody2d.velocity.x, 0f);
+        _rigidbody2d.AddForce(Vector2.up * jumpPower);
+
+        _anim.GroundSetting(true);
     }
 
-    public void InputMove()
+    public void MoveAction()
     {
         if (Mathf.Abs(h) > 0)
         {
-            for (int i = 0; i < _spriteRender.Length; i++)
-            {
-                _spriteRender[i].flipX = (Mathf.Sign(h) == 1) ? true : false;
-            }
+            Flip();
         }
-
         _anim.HorizontalSetting(h);
 
         _rigidbody2d.velocity = new Vector2(h * _speed, _rigidbody2d.velocity.y);
@@ -117,30 +123,26 @@ public class CPlayerMovement : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.name == "CEvent")
+        if (other.gameObject.name == "EventItem")
         {
             stageManager.ShowEventButton();
             Destroy(other.gameObject);
         }
     }
 
-    void OnCollisionStay2D(Collision2D other)
+    bool CheckGround()
     {
-        if (other.gameObject.name == "Ground" || other.gameObject.tag == "Box")
-        {
-            _anim.GroundSetting(true);
-
-            isJump = false;
-        }
+        return Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("BlockingLayer"));
     }
 
-    void OnCollisionExit2D(Collision2D other)
+    void Flip()
     {
-        if (other.gameObject.name == "Ground" || other.gameObject.tag == "Box")
+        isRight = !isRight;
+        for (int i = 0; i < _spriteRender.Length; i++)
         {
-            _anim.GroundSetting(false);
+            _spriteRender[i].flipX = (Mathf.Sign(h)==1) ? true : false;
         }
-    }
 
+    }
 
 }

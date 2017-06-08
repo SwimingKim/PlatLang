@@ -154,10 +154,27 @@ GameObject:
   - component: {fileID: 114000057696379314}
   - component: {fileID: 114687059766771896}
   - component: {fileID: 58443771077789292}
+  - component: {fileID: 114017805355520618}
+  - component: {fileID: 114341574753314876}
   m_Layer: 8
   m_Name: Gnome
   m_TagString: Untagged
   m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1890884658306730
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4629965170707792}
+  m_Layer: 8
+  m_Name: GroundChecker
+  m_TagString: Untagged
+  m_Icon: {fileID: -5765324120231101433, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -196,13 +213,27 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1855292667879020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.247, z: 0.387}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalPosition: {x: 0.002, y: -0.301, z: 0.387}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_Children:
   - {fileID: 4933999866659076}
   - {fileID: 4236970926720812}
+  - {fileID: 4629965170707792}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4629965170707792
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1890884658306730}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4557088646597322}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4770002861717918
 Transform:
@@ -358,7 +389,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.05, y: 0.22}
+  m_Offset: {x: -0.03, y: 0.2}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -369,7 +400,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.29, y: 0.71}
+  m_Size: {x: 0.29, y: 0.55}
   m_EdgeRadius: 0
 --- !u!95 &95582856172276646
 Animator:
@@ -400,6 +431,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animType: 0
+--- !u!114 &114017805355520618
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1855292667879020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bfbd04f1c73d451a8531fad51832855, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114341574753314876
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1855292667879020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b4a09d660e2f40c29016f4448bd5600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isDie: 0
+  _hpImage:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _hpCount: 3
 --- !u!114 &114687059766771896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -426,7 +485,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 2
+  groundCheck: {fileID: 4629965170707792}
   isJump: 0
+  jumpPower: 700
   _spriteRender:
   - {fileID: 212152380749665470}
   - {fileID: 212469618237993678}

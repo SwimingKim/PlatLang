@@ -34,15 +34,9 @@ public class CDiamond : MonoBehaviour {
 			Destroy(gameObject);
 		}
 
-		else if (other.name == "Ground")
+		else if (other.name == "Ground" || other.name == "XBox")
 		{
 			Destroy(gameObject);
-		}
-
-		else if (other.name == "MoveBox")
-		{
-			Destroy(other.gameObject);
-			Debug.Log("움직이기 아이템");
 		}
 	}
 
