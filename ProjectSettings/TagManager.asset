@@ -48,6 +48,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Effect
+    uniqueID: 2082762175
+    locked: 0
   - name: Background
     uniqueID: 1093696345
     locked: 0
@@ -68,9 +71,6 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 771169021
-    locked: 0
-  - name: Effect
-    uniqueID: 2082762175
     locked: 0
   - name: Disapper
     uniqueID: 1787937767
