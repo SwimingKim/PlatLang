@@ -25,12 +25,13 @@ public class CPlayerMovement : MonoBehaviour
     public SpriteRenderer[] _spriteRender;
     private bool isRight = false;
 
-    public CStageManager stageManager;
+    CStageManager stageManager;
 
     void Awake()
     {
         _rigidbody2d = GetComponent<Rigidbody2D>();
         _anim = GetComponent<CPlayerAnimation>();
+        stageManager = GetComponent<CPlayerManager>().stageManager.GetComponent<CStageManager>();
     }
 
     void Start()

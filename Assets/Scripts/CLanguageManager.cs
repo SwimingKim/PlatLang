@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using GameData;
 
 public class CLanguageManager : MonoBehaviour
 {
@@ -34,6 +35,11 @@ public class CLanguageManager : MonoBehaviour
         {
             Init(CGameManager.instance.lang); // 0 : 영어, 1 : 중국어, 2 : 일본어
         }
+    }
+
+    void Start()
+    {
+        StartCoroutine("LanguageDataNetCoroutine");
     }
 
     protected void Init(int langMode)
@@ -166,11 +172,46 @@ public class CLanguageManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(2f);
-        
+
         HideWord();
         foreach (Button item in _noOverlaps)
         {
             item.enabled = true;
+        }
+    }
+
+    IEnumerator LanguageDataNetCoroutine()
+    {
+        string url = "http://skim.kr/platlang.php";
+
+        WWWForm form = new WWWForm();
+        form.AddField("lang", "eng");
+        form.AddField("chapter", "animal");
+
+        WWW www = new WWW(url, form);
+
+        yield return www;
+
+        if (www.error == null)
+        {
+            Dictionary<string, object> responseData = MiniJSON.jsonDecode(www.text) as Dictionary<string, object>;
+
+            string code = responseData["result_code"].ToString();
+            if (!code.Equals("SUCCESS"))
+            {
+                yield break;
+            }
+
+            Dictionary<string, object> dicData = responseData["study"] as Dictionary<string, object>;
+            foreach (var item in dicData)
+            {
+                Debug.Log(item.Key + " : " + item.Value);
+            }
+
+        }
+        else
+        {
+            Debug.Log(www.error);
         }
     }
 
