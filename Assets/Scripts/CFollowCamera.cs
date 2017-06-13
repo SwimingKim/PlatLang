@@ -11,7 +11,7 @@ public class CFollowCamera : MonoBehaviour {
 	public float yMargin = 1f;
 	public float xSmooth = 2f;
 	public float ySmooth = 2f;
-	public float maxY = 0.5f;
+	public float maxY = 5f;
 	public float minY = -0.5f;
 
 	private float targetX, targetY;

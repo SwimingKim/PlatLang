@@ -22,7 +22,10 @@ public class CLanguageManager : MonoBehaviour
     public Button[] _studyItems; // 습득한 단어 아이템
 
     Dictionary<string, string> wordData = new Dictionary<string, string>();
+    string[] keys = new string[5];
     string _wordTxt, _speakTxt, _koreanTxt;
+
+    string server_lang, server_chapter;
 
     protected virtual void Awake()
     {
@@ -33,7 +36,7 @@ public class CLanguageManager : MonoBehaviour
         }
         else
         {
-            Init(CGameManager.instance.lang); // 0 : 영어, 1 : 중국어, 2 : 일본어
+            Init();
         }
     }
 
@@ -42,13 +45,8 @@ public class CLanguageManager : MonoBehaviour
         StartCoroutine("LanguageDataNetCoroutine");
     }
 
-    protected void Init(int langMode)
+    protected void Init()
     {
-        Debug.Log("Lang Init");
-
-        // 데이터 세팅 (임시)
-        ChooseStudyData(langMode);
-
         // StudyPanel 세팅
         _studyItems = _studyPanel.GetComponentsInChildren<Button>();
         // 단어 학습 전으로 돌리기
@@ -72,67 +70,15 @@ public class CLanguageManager : MonoBehaviour
         }
     }
 
-    // 언어 설정
-    void ChooseStudyData(int langMode)
-    {
-        switch (langMode)
-        {
-            case 0:
-                _lang = LANGTYPE.ENG;
-                EasyTTSUtil.Initialize(EasyTTSUtil.UnitedStates);
-                wordData["호랑이"] = "Tiger";
-                wordData["원숭이"] = "Monkey";
-                wordData["토끼"] = "Rabit";
-                wordData["돌고래"] = "Dolphin";
-                wordData["사슴"] = "Deer";
-                break;
-            case 1:
-                _lang = LANGTYPE.CH;
-                EasyTTSUtil.Initialize(EasyTTSUtil.China);
-                wordData["호랑이"] = "老虎[lǎohǔ]";
-                wordData["원숭이"] = "猴子[hóuzi]";
-                wordData["토끼"] = "兔子[tùzi]";
-                wordData["돌고래"] = "海豚[hǎitún]";
-                wordData["사슴"] = "鹿[lù]";
-                break;
-            case 2:
-                _lang = LANGTYPE.JP;
-                EasyTTSUtil.Initialize(EasyTTSUtil.Japan);
-                wordData["호랑이"] = "とら[虎]";
-                wordData["원숭이"] = "さる[猿]";
-                wordData["토끼"] = "うさぎ[兎、兔]";
-                wordData["돌고래"] = "いるか[海豚]";
-                wordData["사슴"] = "しか[鹿]";
-                break;
-        }
-    }
-
     public void EarnWordItem(int index)
     {
-        _studyItems[0].enabled = true;
-        _studyItems[0].image.sprite = _studyItems[0].spriteState.pressedSprite;
+        _studyItems[index].enabled = true;
+        _studyItems[index].image.sprite = _studyItems[0].spriteState.pressedSprite;
     }
 
     public void ShowWord(int order)
     {
-        switch (order)
-        {
-            case 0:
-                _koreanTxt = "원숭이";
-                break;
-            case 1:
-                _koreanTxt = "호랑이";
-                break;
-            case 2:
-                _koreanTxt = "돌고래";
-                break;
-            case 3:
-                _koreanTxt = "토끼";
-                break;
-            case 4:
-                _koreanTxt = "사슴";
-                break;
-        }
+        _koreanTxt = keys[order];
 
         _wordPanel.SetActive(true);
         if (_lang == LANGTYPE.ENG)
@@ -185,8 +131,8 @@ public class CLanguageManager : MonoBehaviour
         string url = "http://skim.kr/platlang.php";
 
         WWWForm form = new WWWForm();
-        form.AddField("lang", "eng");
-        form.AddField("chapter", "animal");
+        form.AddField("lang", ChooseServerLang());
+        form.AddField("chapter", ChooseServerChapter());
 
         WWW www = new WWW(url, form);
 
@@ -203,10 +149,30 @@ public class CLanguageManager : MonoBehaviour
             }
 
             Dictionary<string, object> dicData = responseData["study"] as Dictionary<string, object>;
+
+            // 랜덤으로 숫자 5개 뽑아오기
+            int[] num = ChooseRandomNum(dicData.Count);
+            int i = 0;
             foreach (var item in dicData)
             {
-                Debug.Log(item.Key + " : " + item.Value);
+                for (int j = 0; j < num.Length; j++)
+                {
+                    if (num[j] == i)
+                    {
+                        wordData[item.Key] = item.Value.ToString();
+                        keys[j] = item.Key;
+                    }
+                }
+                i++;
             }
+
+            // wordData 출력
+            // int k = 0;
+            // foreach (KeyValuePair<string, string> kvp in wordData)
+            // {
+            //     Debug.LogFormat("{2} : Key = {0}, Value = {1}", kvp.Key, kvp.Value, k);
+            //     k++;
+            // }
 
         }
         else
@@ -215,6 +181,54 @@ public class CLanguageManager : MonoBehaviour
         }
     }
 
+    // 0 : 영어, 1 : 중국어, 2 : 일본어
+    string ChooseServerLang()
+    {
+        int lang = CGameManager.instance.lang;
+        switch (lang)
+        {
+            case 0:
+                _lang = LANGTYPE.ENG;
+                EasyTTSUtil.Initialize(EasyTTSUtil.UnitedStates);
+                return "ENG";
+            case 1:
+                _lang = LANGTYPE.CH;
+                EasyTTSUtil.Initialize(EasyTTSUtil.China);
+                return "CH";
+            case 2:
+                _lang = LANGTYPE.JP;
+                EasyTTSUtil.Initialize(EasyTTSUtil.Japan);
+                return "JP";
+        }
+        return "";
+    }
 
+    string ChooseServerChapter()
+    {
+        int stage = CGameManager.instance.stage;
+        switch (stage)
+        {
+            case 1: return "animal";
+            case 2: return "weather";
+            case 3: return "food";
+            case 4: return "color";
+        }
+        return "";
+    }
+
+    // 랜덤으로 5개를 뽑는 함수
+    int[] ChooseRandomNum(int size)
+    {
+        int[] num = new int[5];
+        for (int i = 0; i < num.Length; i++)
+        {
+            num[i] = Random.Range(0, size - 1);
+            for (int j = 0; j < i; j++)
+            {
+                if (num[i] == num[j]) i--;
+            }
+        }
+        return num;
+    }
 
 }

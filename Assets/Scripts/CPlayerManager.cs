@@ -11,14 +11,11 @@ public class CPlayerManager : MonoBehaviour {
         stageManager.GetComponent<CStageManager>().StarCountUp();
 	}
 
-	public void WordEarnByManager()
+	public void WordEarnByManager(int order)
 	{
-		stageManager.GetComponent<CLanguageManager>().EarnWordItem(0);	
-	}
-
-	public void ShowWordByManager()
-	{
-		stageManager.GetComponent<CLanguageManager>().ShowWord(1);
+		stageManager.GetComponent<CLanguageManager>().EarnWordItem(order);	
+		
+		stageManager.GetComponent<CLanguageManager>().ShowWord(order);
 	}
 
 }

@@ -23,7 +23,9 @@ public class CPlayerMovement : MonoBehaviour
     Rigidbody2D _rigidbody2d;
     Animator _animator;
     public SpriteRenderer[] _spriteRender;
-    private bool isRight = false;
+    [HideInInspector]
+    public bool isRight = false;
+    public Collider2D[] leftCol, rightCol;
 
     CStageManager stageManager;
 
@@ -78,9 +80,9 @@ public class CPlayerMovement : MonoBehaviour
                 if (isGround) isJump = true;
                 break;
             case 4:
-                if (actionTimer >= actionDelayTime && CGameManager.instance.stage == 1)
+                if (actionTimer >= actionDelayTime)
                 {
-                    stageManager.InputAction();
+                    stageManager.InputAction(CGameManager.instance.stage);
 
                     actionTimer = 0f;
                 }
@@ -101,7 +103,7 @@ public class CPlayerMovement : MonoBehaviour
 
     public void MoveAction()
     {
-        if (Mathf.Abs(h) > 0)
+        if (h > 0 && !isRight || h < 0 && isRight)
         {
             Flip();
         }
@@ -141,7 +143,30 @@ public class CPlayerMovement : MonoBehaviour
         isRight = !isRight;
         for (int i = 0; i < _spriteRender.Length; i++)
         {
-            _spriteRender[i].flipX = (Mathf.Sign(h)==1) ? true : false;
+            _spriteRender[i].flipX = (Mathf.Sign(h) == 1) ? true : false;
+        }
+
+        if (isRight)
+        {
+            foreach (var item in leftCol)
+            {
+                item.enabled = false;
+            }
+            foreach (var item in rightCol)
+            {
+                item.enabled = true;
+            }
+        }
+        else
+        {
+            foreach (var item in leftCol)
+            {
+                item.enabled = true;
+            }
+            foreach (var item in rightCol)
+            {
+                item.enabled = false;
+            }
         }
 
     }

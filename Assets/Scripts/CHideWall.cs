@@ -7,6 +7,8 @@ public class CHideWall : MonoBehaviour {
 	public GameObject player;
 	public SpriteRenderer[] spList;
 
+	public float visibleDist = 3f, invisibleDist = 5f;
+
 	void Awake()
 	{
 		spList = GetComponentsInChildren<SpriteRenderer>();
@@ -15,14 +17,14 @@ public class CHideWall : MonoBehaviour {
 	void FixedUpdate()
 	{
 		float dis = Vector3.Distance(player.transform.position, transform.position);
-		if (dis <= 3f)
+		if (dis <= visibleDist)
 		{
 			foreach (SpriteRenderer row in spList)
 			{
 				row.enabled = false;
 			}
 		}
-		else if (dis > 5f)
+		else if (dis > invisibleDist)
 		{
 			foreach (SpriteRenderer row in spList)
 			{

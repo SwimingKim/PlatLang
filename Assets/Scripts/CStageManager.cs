@@ -11,9 +11,16 @@ public class CStageManager : MonoBehaviour
 
     public Text starText;
 
-    public void InputAction()
+    public void InputAction(int stage)
     {
-        player.GetComponent<CPlayerAnimation>().PlayAnimation(CPlayerAnimation.ANIM_TYPE.ATTACK);
+        if (stage == 1)
+        {
+            player.GetComponent<CPlayerAnimation>().PlayAnimation(CPlayerAnimation.ANIM_TYPE.ATTACK);
+        }
+        else if (stage == 2)
+        {
+            player.GetComponent<CBlinkEvent>().BlinkEvent();
+        }
     }
 
     public void ShowEventButton()
@@ -21,12 +28,10 @@ public class CStageManager : MonoBehaviour
         eventButton.SetActive(true);
     }
 
-
     public void StarCountUp()
     {
         int star = int.Parse(starText.text);
         starText.text = (++star).ToString();
     }
-
 
 }

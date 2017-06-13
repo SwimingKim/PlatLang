@@ -17,12 +17,12 @@ public class CBox : MonoBehaviour
 		else if (!isRandom) ItemDrop();
     }
 
-    protected void ItemDrop()
+    protected virtual void ItemDrop()
     {
         Instantiate(itemPrefab, transform.position, Quaternion.identity);
     }
 
-	void OnTriggerEnter2D(Collider2D other)
+	protected void OnTriggerEnter2D(Collider2D other)
 	{
 		if (other.gameObject.name == "Gnome")
 		{

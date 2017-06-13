@@ -47266,12 +47266,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d6fcb7917d9c84133a96a0b09ebe2ffb, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &965135431 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114356117926270656, guid: d6fcb7917d9c84133a96a0b09ebe2ffb,
-    type: 2}
-  m_PrefabInternal: {fileID: 965135430}
-  m_Script: {fileID: 11500000, guid: 2a866227a60564b3898073f2319e4256, type: 3}
 --- !u!114 &965135432 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114554654900329164, guid: d6fcb7917d9c84133a96a0b09ebe2ffb,
@@ -68456,11 +68450,6 @@ SpriteRenderer:
   m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
---- !u!4 &1408048968 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4557088646597322, guid: e418c1f3974ff41d9aa996f782f86290,
-    type: 2}
-  m_PrefabInternal: {fileID: 1392282639}
 --- !u!1 &1408048969 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1855292667879020, guid: e418c1f3974ff41d9aa996f782f86290,
@@ -101967,14 +101956,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8b88b9026da5419e8dc6d130fff7de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageTimer: {fileID: 965135431}
-  _targetPlayer: {fileID: 1408048968}
-  xMargin: 1
+  stageTimer: {fileID: 0}
+  _targetPlayer: {fileID: 0}
+  xMargin: 0.5
   yMargin: 1
-  xSmooth: 2
-  ySmooth: 2
-  maxY: 0.5
-  minY: -0.5
+  xSmooth: 3
+  ySmooth: 1.5
+  maxY: 5
+  minY: -5
 --- !u!81 &2129221828
 AudioListener:
   m_ObjectHideFlags: 0
