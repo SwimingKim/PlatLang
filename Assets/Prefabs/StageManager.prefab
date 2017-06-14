@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 114554654900329164}
   - component: {fileID: 114356117926270656}
   - component: {fileID: 114192653255635200}
-  - component: {fileID: 114690240541994188}
   m_Layer: 0
   m_Name: StageManager
   m_TagString: Untagged
@@ -89,18 +88,3 @@ MonoBehaviour:
   player: {fileID: 0}
   eventButton: {fileID: 0}
   starText: {fileID: 0}
---- !u!114 &114690240541994188
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1834827070481636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 925fe9383ea014a82816f07d3ac453c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blockingMask:
-    serializedVersion: 2
-    m_Bits: 512
-  checkPoint: {fileID: 0}
