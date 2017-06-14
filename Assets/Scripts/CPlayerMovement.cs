@@ -1,39 +1,53 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class CPlayerMovement : MonoBehaviour
 {
-    public float _speed;
+    // 이동
+    Rigidbody2D _rigidbody2d;
+    float _speed = 2f;
     float h;
-
-    float actionDelayTime = 0.4f;
-    float actionTimer;
-
+    // 점프
+    bool isJump = false;
+    float jumpPower = 700f;
+    // 땅 접촉
     private bool isGround = false;
     public Transform groundCheck;
-
-    public bool isJump = false;
-    public float jumpPower = 680f;
-
-    CPlayerAnimation _anim;
-
-    Rigidbody2D _rigidbody2d;
-    Animator _animator;
+    // Flip
     public SpriteRenderer[] _spriteRender;
     [HideInInspector]
     public bool isRight = false;
     public Collider2D[] leftCol, rightCol;
 
-    CStageManager stageManager;
+    float actionDelayTime = 0.4f;
+    float actionTimer;
+
+    // 애니메이션
+    CPlayerAnimation _anim;
+    // stage
+    public GameObject eventButton;
+    CStageEvent stageEvent;
 
     void Awake()
     {
         _rigidbody2d = GetComponent<Rigidbody2D>();
         _anim = GetComponent<CPlayerAnimation>();
-        stageManager = GetComponent<CPlayerManager>().stageManager.GetComponent<CStageManager>();
+        
+        if (CGameManager.instance != null)
+        {
+            int stage = CGameManager.instance.stage;
+            if (stage == 2) 
+            {
+                stageEvent = GetComponent<CBlinkEvent>();
+                stageEvent.enabled = true;
+            }
+            else if (stage == 3)
+            {
+                stageEvent = GetComponent<CBombEvent>();
+                stageEvent.enabled = true;
+            }
+        }
     }
 
     void Start()
@@ -82,7 +96,7 @@ public class CPlayerMovement : MonoBehaviour
             case 4:
                 if (actionTimer >= actionDelayTime)
                 {
-                    stageManager.InputAction(CGameManager.instance.stage);
+                    InputAction(CGameManager.instance.stage);
 
                     actionTimer = 0f;
                 }
@@ -128,7 +142,7 @@ public class CPlayerMovement : MonoBehaviour
     {
         if (other.gameObject.name == "EventItem")
         {
-            stageManager.ShowEventButton();
+            eventButton.SetActive(true);
             Destroy(other.gameObject);
         }
     }
@@ -169,6 +183,23 @@ public class CPlayerMovement : MonoBehaviour
             }
         }
 
+    }
+
+    void InputAction(int stage)
+    {
+        switch (stage)
+        {
+            case 1 :
+                _anim.PlayAnimation(CPlayerAnimation.ANIM_TYPE.ATTACK);
+                break;
+            case 2 : 
+            case 3 :
+                stageEvent.StageEvent();
+                break;
+            case 4 :
+                Debug.Log("내리치기");
+                break;
+        }
     }
 
 }

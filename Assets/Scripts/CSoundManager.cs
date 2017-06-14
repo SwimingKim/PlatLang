@@ -24,7 +24,7 @@ public class CSoundManager : MonoBehaviour
     void Start()
     {
         _isPlayingBGM = PlayerPrefs.GetInt("BGM", 1) == 1 ? true  : false;
-        Debug.Log("start = "+_isPlayingBGM);
+        Debug.Log("BGM = "+_isPlayingBGM);
     }
 
     public void PlayStart()

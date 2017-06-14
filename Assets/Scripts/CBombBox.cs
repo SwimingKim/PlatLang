@@ -21,7 +21,7 @@ public class CBombBox : MonoBehaviour {
 		}
 	}
 
-	IEnumerator BombCoroutine()
+	protected IEnumerator BombCoroutine()
 	{
 		yield return new WaitForSeconds(1.5f);
 
@@ -37,7 +37,7 @@ public class CBombBox : MonoBehaviour {
 		}
 	}
 
-	void Destroy()
+	protected void Destroy()
 	{
 		Destroy(gameObject);
 	}

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CBlinkEvent : MonoBehaviour
+public class CBlinkEvent : CStageEvent
 {
     public LayerMask blockingMask;
     public Transform checkPoint;
@@ -15,7 +15,12 @@ public class CBlinkEvent : MonoBehaviour
         movement = GetComponent<CPlayerMovement>();
     }
 
-    public void BlinkEvent()
+    void Start()
+    {
+        
+    }
+
+    public override void StageEvent()
     {
         Vector2 endPos = new Vector2(checkPoint.position.x - ((movement.isRight) ? -checkRange : checkRange), checkPoint.position.y);
         Collider2D hitCollision = Physics2D.OverlapCircle(endPos, 0.25f, blockingMask);
@@ -25,7 +30,6 @@ public class CBlinkEvent : MonoBehaviour
         if (hitCollision != null) return;
 
         transform.position = endPos;
-
     }
 
 }

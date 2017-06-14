@@ -39143,6 +39143,11 @@ Prefab:
       propertyPath: _hpImage.Array.data[2]
       value: 
       objectReference: {fileID: 83686228}
+    - target: {fileID: 114687505576043740, guid: e418c1f3974ff41d9aa996f782f86290,
+        type: 2}
+      propertyPath: eventButton
+      value: 
+      objectReference: {fileID: 1962361649}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e418c1f3974ff41d9aa996f782f86290, type: 2}
   m_IsPrefabParent: 0
