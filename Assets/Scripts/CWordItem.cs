@@ -15,7 +15,6 @@ public class CWordItem : MonoBehaviour {
 	{
 		if (other.name == "Gnome")
 		{
-			Debug.Log(order+"번 단어 얻음");
 			Destroy(gameObject);
 
 			other.GetComponent<CPlayerManager>().WordEarnByManager(order);

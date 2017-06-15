@@ -107,7 +107,6 @@ public class CLanguageManager : MonoBehaviour
     {
         EasyTTSUtil.SpeechFlush(_speakTxt);
         StartCoroutine("PlayTTSCoroutine");
-        Debug.Log(_speakTxt + " TTS");
     }
 
     IEnumerator PlayTTSCoroutine()
@@ -137,7 +136,6 @@ public class CLanguageManager : MonoBehaviour
         WWW www = new WWW(url, form);
 
         yield return www;
-
         if (www.error == null)
         {
             Dictionary<string, object> responseData = MiniJSON.jsonDecode(www.text) as Dictionary<string, object>;
@@ -177,6 +175,7 @@ public class CLanguageManager : MonoBehaviour
         }
         else
         {
+            Debug.Log("연결 안됨");
             Debug.Log(www.error);
         }
     }

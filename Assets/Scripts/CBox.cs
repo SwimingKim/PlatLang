@@ -22,7 +22,7 @@ public class CBox : MonoBehaviour
         Instantiate(itemPrefab, transform.position, Quaternion.identity);
     }
 
-	protected void OnTriggerEnter2D(Collider2D other)
+	protected virtual void OnTriggerEnter2D(Collider2D other)
 	{
 		if (other.gameObject.name == "Gnome")
 		{

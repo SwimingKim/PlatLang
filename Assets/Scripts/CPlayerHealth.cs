@@ -25,7 +25,6 @@ public class CPlayerHealth : MonoBehaviour
     {
         if (isDamage) return;
 
-		Debug.Log("피격");
         StartCoroutine("HpDownCorountine");
     }
 
@@ -44,7 +43,7 @@ public class CPlayerHealth : MonoBehaviour
         _movement.JumpAction(300f);
 
         yield return new WaitForSeconds(3f);
-		Debug.Log("코루틴 종료");
+		Debug.Log("피격 코루틴 종료");
 		isDamage = false;
 		_animator.Play("Empty");
     }

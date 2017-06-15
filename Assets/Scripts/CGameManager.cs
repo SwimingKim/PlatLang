@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 public class CGameManager : MonoBehaviour
 {
     public static CGameManager instance = null;
-    
+
     public int stage;
     public int lang;
+
+    string package = "com.androidsample.AndroidPlugin";
 
     void Awake()
     {
@@ -17,9 +19,20 @@ public class CGameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    void Start()
+    {
+        CallSetUnityActivity();
+        // 인터넷 연결 상태 확인
+        if (Application.internetReachability == NetworkReachability.NotReachable)
+        {
+            Debug.Log("연결 상태를 확인하세요");
+            CallToast("연결 상태를 확인해주세요");
+        }
+    }
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha0)) LoadScene(0);        
+        if (Input.GetKeyDown(KeyCode.Alpha0)) LoadScene(0);
         if (Input.GetKeyDown(KeyCode.Alpha1)) LoadScene(1);
         if (Input.GetKeyDown(KeyCode.Alpha2)) LoadScene(2);
         if (Input.GetKeyDown(KeyCode.Alpha3)) LoadScene(3);
@@ -51,7 +64,7 @@ public class CGameManager : MonoBehaviour
                 SceneManager.LoadScene("Smash");
                 CSoundManager.instance.PlayStart();
                 break;
-            case 5 :
+            case 5:
                 SceneManager.LoadScene("End");
                 break;
         }
@@ -62,8 +75,33 @@ public class CGameManager : MonoBehaviour
     // MainManager의 함수를 활용할 것
     public void StartStage()
     {
-        LoadScene(stage+1);
-        Debug.Log(stage+1 + "씬 시작");
+        LoadScene(stage + 1);
+        Debug.Log(stage + 1 + "씬 시작");
     }
+
+
+#if UNITY_ANDROID
+    AndroidJavaObject javaObj = null;
+    AndroidJavaObject GetJavaObject()
+    {
+        if (javaObj == null)
+        {
+            javaObj = new AndroidJavaObject(package);
+        }
+        return javaObj;
+    }
+
+    void CallSetUnityActivity()
+    {
+        AndroidJavaClass jc = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+        AndroidJavaObject jo = jc.GetStatic<AndroidJavaObject>("currentActivity");
+        GetJavaObject().Call("setUnityActivity", jo);
+    }
+
+    void CallToast(string strMessage)
+    {
+        GetJavaObject().Call("showToast", strMessage);
+    }
+#endif
 
 }

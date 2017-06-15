@@ -20,7 +20,7 @@ public class CPlayerMovement : MonoBehaviour
     public bool isRight = false;
     public Collider2D[] leftCol, rightCol;
 
-    float actionDelayTime = 0.4f;
+    float actionDelayTime = 0.8f;
     float actionTimer;
 
     // 애니메이션
@@ -33,11 +33,11 @@ public class CPlayerMovement : MonoBehaviour
     {
         _rigidbody2d = GetComponent<Rigidbody2D>();
         _anim = GetComponent<CPlayerAnimation>();
-        
+
         if (CGameManager.instance != null)
         {
             int stage = CGameManager.instance.stage;
-            if (stage == 2) 
+            if (stage == 2)
             {
                 stageEvent = GetComponent<CBlinkEvent>();
                 stageEvent.enabled = true;
@@ -149,7 +149,9 @@ public class CPlayerMovement : MonoBehaviour
 
     bool CheckGround()
     {
-        return Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("BlockingLayer"));
+        // Vector2 pos = new Vector2(groundCheck.position.x, groundCheck.position.y-0.125f);
+        // Debug.DrawLine(groundCheck.position, pos, Color.red);
+        return Physics2D.OverlapCircle(groundCheck.position, 0.25f, 1 << LayerMask.NameToLayer("BlockingLayer"));
     }
 
     void Flip()
@@ -189,14 +191,14 @@ public class CPlayerMovement : MonoBehaviour
     {
         switch (stage)
         {
-            case 1 :
+            case 1:
                 _anim.PlayAnimation(CPlayerAnimation.ANIM_TYPE.ATTACK);
                 break;
-            case 2 : 
-            case 3 :
+            case 2:
+            case 3:
                 stageEvent.StageEvent();
                 break;
-            case 4 :
+            case 4:
                 Debug.Log("내리치기");
                 break;
         }
