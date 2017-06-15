@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class CBombEvent : CStageEvent
 {
+
+    public Transform bombPos;
     public GameObject thurderItem;
 
 	Vector2 pos;
-
-    bool canBomb = true;
 
     void Start()
     {
@@ -32,7 +32,7 @@ public class CBombEvent : CStageEvent
 		if (hit.collider == null) return false;
 
         if (hit.collider != null)
-			pos = new Vector2(hit.collider.transform.position.x, transform.position.y + 0.125f);
+			pos = new Vector2(hit.collider.transform.position.x, bombPos.position.y + 0.125f);
 
 		return true;
     }

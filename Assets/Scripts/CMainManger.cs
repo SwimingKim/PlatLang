@@ -16,6 +16,10 @@ public class CMainManger : MonoBehaviour
 
     public int canvasNum = 0;
 
+    // backpress 종료
+    float backDelayTime = 2f;
+    float backTimer;
+
     void Awake()
     {
         instance = this;
@@ -28,6 +32,8 @@ public class CMainManger : MonoBehaviour
 
     void Update()
     {
+        if (canvasNum == 0) backTimer += Time.deltaTime;
+        
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             BackMove();
@@ -38,8 +44,17 @@ public class CMainManger : MonoBehaviour
     {
         if (canvasNum == 0)
         {
-            Debug.Log("종료");
-            Application.Quit();
+            if (backTimer >= backDelayTime)
+            {
+                CGameManager.instance.CallShortToast("\'뒤로\'버튼을 한번 더 누르시면 종료됩니다.");
+                Debug.Log("Toast");
+                backTimer = 0f;
+            }
+            else
+            {
+                Debug.Log("종료");
+                Application.Quit();
+            }
         }
         else
         {

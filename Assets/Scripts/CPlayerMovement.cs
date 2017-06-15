@@ -20,7 +20,7 @@ public class CPlayerMovement : MonoBehaviour
     public bool isRight = false;
     public Collider2D[] leftCol, rightCol;
 
-    float actionDelayTime = 0.8f;
+    float actionDelayTime = 1.2f;
     float actionTimer;
 
     // 애니메이션

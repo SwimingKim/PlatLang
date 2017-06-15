@@ -218,8 +218,8 @@ PlayerSettings:
   AndroidTargetDevice: 3
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: 
-  AndroidKeyaliasName: 
+  AndroidKeystoreName: /Volumes/SD CARD/release.keystore
+  AndroidKeyaliasName: release
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
   androidEnableBanner: 0

@@ -26,7 +26,7 @@ public class CGameManager : MonoBehaviour
         if (Application.internetReachability == NetworkReachability.NotReachable)
         {
             Debug.Log("연결 상태를 확인하세요");
-            CallToast("연결 상태를 확인해주세요");
+            CallLongToast("연결 상태를 확인해주세요");
         }
     }
 
@@ -79,7 +79,6 @@ public class CGameManager : MonoBehaviour
         Debug.Log(stage + 1 + "씬 시작");
     }
 
-
 #if UNITY_ANDROID
     AndroidJavaObject javaObj = null;
     AndroidJavaObject GetJavaObject()
@@ -98,9 +97,14 @@ public class CGameManager : MonoBehaviour
         GetJavaObject().Call("setUnityActivity", jo);
     }
 
-    void CallToast(string strMessage)
+    public void CallShortToast(string strMessage)
     {
-        GetJavaObject().Call("showToast", strMessage);
+        GetJavaObject().Call("showShortToast", strMessage);
+    }
+
+    public void CallLongToast(string strMessage)
+    {
+        GetJavaObject().Call("showLongToast", strMessage);
     }
 #endif
 

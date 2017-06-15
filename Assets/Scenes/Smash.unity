@@ -47266,6 +47266,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d6fcb7917d9c84133a96a0b09ebe2ffb, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &965135431 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114356117926270656, guid: d6fcb7917d9c84133a96a0b09ebe2ffb,
+    type: 2}
+  m_PrefabInternal: {fileID: 965135430}
+  m_Script: {fileID: 11500000, guid: 2a866227a60564b3898073f2319e4256, type: 3}
 --- !u!114 &965135432 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114554654900329164, guid: d6fcb7917d9c84133a96a0b09ebe2ffb,
@@ -67681,6 +67687,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e418c1f3974ff41d9aa996f782f86290, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &1392282640 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4557088646597322, guid: e418c1f3974ff41d9aa996f782f86290,
+    type: 2}
+  m_PrefabInternal: {fileID: 1392282639}
 --- !u!1 &1396226450
 GameObject:
   m_ObjectHideFlags: 0
@@ -101961,8 +101972,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8b88b9026da5419e8dc6d130fff7de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageTimer: {fileID: 0}
-  _targetPlayer: {fileID: 0}
+  stageTimer: {fileID: 965135431}
+  _targetPlayer: {fileID: 1392282640}
   xMargin: 0.5
   yMargin: 1
   xSmooth: 3
@@ -102014,7 +102025,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2
+  orthographic size: 3
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
