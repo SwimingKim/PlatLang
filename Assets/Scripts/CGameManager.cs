@@ -7,6 +7,8 @@ public class CGameManager : MonoBehaviour
 {
     public static CGameManager instance = null;
 
+    CGooglePlayServiceManager googleManager;
+
     public int stage;
     public int lang;
 
@@ -17,6 +19,8 @@ public class CGameManager : MonoBehaviour
         if (instance == null) instance = this;
         else if (instance != this) Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
+
+        googleManager = GetComponent<CGooglePlayServiceManager>();
     }
 
     void Start()
@@ -38,6 +42,12 @@ public class CGameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha3)) LoadScene(3);
         if (Input.GetKeyDown(KeyCode.Alpha4)) LoadScene(4);
         if (Input.GetKeyDown(KeyCode.Alpha5)) LoadScene(5);
+    }
+
+    public void GameEnd(bool isWin)
+    {
+        Debug.Log((isWin ? "승리" : "실패")+"로 종료");
+        LoadScene(5);
     }
 
     public void LoadScene(int SceneNum)
@@ -68,7 +78,6 @@ public class CGameManager : MonoBehaviour
                 SceneManager.LoadScene("End");
                 break;
         }
-
     }
 
     // 메모리 생성 전이면 초기화로 무조건 attack씬에서 시작하므로

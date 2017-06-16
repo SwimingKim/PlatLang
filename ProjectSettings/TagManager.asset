@@ -76,3 +76,6 @@ TagManager:
   - name: Disapper
     uniqueID: 1787937767
     locked: 0
+  - name: Smash
+    uniqueID: 1182308067
+    locked: 0

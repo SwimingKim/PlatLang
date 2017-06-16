@@ -31,8 +31,9 @@ public class CBombEvent : CStageEvent
 
 		if (hit.collider == null) return false;
 
-        if (hit.collider != null)
-			pos = new Vector2(hit.collider.transform.position.x, bombPos.position.y + 0.125f);
+        Collider2D col = hit.collider;
+        if (col != null && col.gameObject.tag != "BombBox")
+			pos = new Vector2(col.transform.position.x, bombPos.position.y + 0.125f);
 
 		return true;
     }

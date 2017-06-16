@@ -41,7 +41,7 @@ public class CBombBox : MonoBehaviour
 		Destroy(gameObject);
     }
 
-    protected void Destroy()
+    protected virtual void Destroy()
     {
         Destroy(gameObject);
     }

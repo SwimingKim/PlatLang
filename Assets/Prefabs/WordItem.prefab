@@ -68,6 +68,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4294079264b9d46068b76b5f24700919, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playManager: {fileID: 0}
+  googleManager: {fileID: 114918954336016752, guid: 999a5c339a0ac46ebb344770e1a77f23,
+    type: 2}
+  order: 0
 --- !u!212 &212779990267675910
 SpriteRenderer:
   m_ObjectHideFlags: 1

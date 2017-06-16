@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class CWordItem : MonoBehaviour {
 
+	public CGooglePlayServiceManager googleManager;
+
+	[HideInInspector]
 	public int order;
+
+	bool isTrigger = false;
 
 	public void Init(int order)
 	{
@@ -13,11 +18,19 @@ public class CWordItem : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.name == "Gnome")
+		if (other.name == "Gnome" && !isTrigger)
 		{
+			isTrigger = true;
+
 			Destroy(gameObject);
 
-			other.GetComponent<CPlayerManager>().WordEarnByManager(order);
+			CPlayerManager playManager = other.GetComponent<CPlayerManager>();
+			playManager.WordEarnByManager(order);
+			Debug.LogFormat("별 {1} 갱신해야해요?", order, playManager.starCount);
+			if (playManager.starCount >= 5)
+			{
+				googleManager.GooglePlayGamesAchievementAndLeaderboardCheck();
+			}
 		}
 	}
 

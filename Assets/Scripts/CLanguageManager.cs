@@ -18,7 +18,6 @@ public class CLanguageManager : MonoBehaviour
 
     [HideInInspector]
     public Text _wordText, _koreanText;
-    public List<Button> _noOverlaps; // TTS 재생 시 실행 방지
     public Button[] _studyItems; // 습득한 단어 아이템
 
     Dictionary<string, string> wordData = new Dictionary<string, string>();
@@ -26,6 +25,18 @@ public class CLanguageManager : MonoBehaviour
     string _wordTxt, _speakTxt, _koreanTxt;
 
     string server_lang, server_chapter;
+
+    public int starCount {
+        get
+        {
+            int num = 0;
+            foreach (Button item in _studyItems)
+            {
+                if(item.enabled == true) num++;
+            }
+            return num;
+        }
+    }
 
     protected virtual void Awake()
     {
@@ -54,26 +65,18 @@ public class CLanguageManager : MonoBehaviour
         {
             item.enabled = false;
         }
-        Button[] studyButtons = _studyPanel.GetComponentsInChildren<Button>();
-        foreach (Button item in studyButtons)
-        {
-            _noOverlaps.Add(item);
-        }
 
         // WordPanel 세팅
         _wordText = _wordPanel.GetComponentsInChildren<Text>()[0];
         _koreanText = _wordPanel.GetComponentsInChildren<Text>()[1];
-        Button[] speakButtons = _wordPanel.GetComponentsInChildren<Button>();
-        foreach (Button item in speakButtons)
-        {
-            _noOverlaps.Add(item);
-        }
     }
 
-    public void EarnWordItem(int index)
+    public void EarnWordItem(int order)
     {
-        _studyItems[index].enabled = true;
-        _studyItems[index].image.sprite = _studyItems[0].spriteState.pressedSprite;
+        _studyItems[order].enabled = true;
+        _studyItems[order].image.sprite = _studyItems[0].spriteState.pressedSprite;
+
+        ShowWord(order);
     }
 
     public void ShowWord(int order)
@@ -111,18 +114,9 @@ public class CLanguageManager : MonoBehaviour
 
     IEnumerator PlayTTSCoroutine()
     {
-        foreach (Button item in _noOverlaps)
-        {
-            item.enabled = false;
-        }
-
         yield return new WaitForSeconds(2f);
 
         HideWord();
-        foreach (Button item in _noOverlaps)
-        {
-            item.enabled = true;
-        }
     }
 
     IEnumerator LanguageDataNetCoroutine()

@@ -4,18 +4,33 @@ using UnityEngine;
 
 public class CPlayerManager : MonoBehaviour {
 
-	public GameObject stageManager;
+	public GameObject stageManagerObj;
+
+	CLanguageManager langManager;
+	CStageManager stageManager;
+
+	public int starCount
+	{
+		get
+		{
+			return langManager.starCount;
+		}
+	}
+
+	void Start()
+	{
+		langManager = stageManagerObj.GetComponent<CLanguageManager>();
+		stageManager = stageManagerObj.GetComponent<CStageManager>();
+	}
 
 	public void StarUpByManager()
 	{
-        stageManager.GetComponent<CStageManager>().StarCountUp();
+        stageManager.StarCountUp();
 	}
 
 	public void WordEarnByManager(int order)
 	{
-		stageManager.GetComponent<CLanguageManager>().EarnWordItem(order);	
-		
-		stageManager.GetComponent<CLanguageManager>().ShowWord(order);
+		langManager.EarnWordItem(order);	
 	}
 
 }
