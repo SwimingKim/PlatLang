@@ -39340,6 +39340,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114875159810905662, guid: e418c1f3974ff41d9aa996f782f86290,
+        type: 2}
+      propertyPath: stageManagerObj
+      value: 
+      objectReference: {fileID: 668507593}
     - target: {fileID: 114341574753314876, guid: e418c1f3974ff41d9aa996f782f86290,
         type: 2}
       propertyPath: _hpImage.Array.data[0]
@@ -39355,21 +39360,11 @@ Prefab:
       propertyPath: _hpImage.Array.data[2]
       value: 
       objectReference: {fileID: 83686228}
-    - target: {fileID: 114875159810905662, guid: e418c1f3974ff41d9aa996f782f86290,
-        type: 2}
-      propertyPath: stageManager
-      value: 
-      objectReference: {fileID: 668507593}
     - target: {fileID: 114687505576043740, guid: e418c1f3974ff41d9aa996f782f86290,
         type: 2}
       propertyPath: eventButton
       value: 
       objectReference: {fileID: 1962361649}
-    - target: {fileID: 114875159810905662, guid: e418c1f3974ff41d9aa996f782f86290,
-        type: 2}
-      propertyPath: stageManagerObj
-      value: 
-      objectReference: {fileID: 668507593}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e418c1f3974ff41d9aa996f782f86290, type: 2}
   m_IsPrefabParent: 0

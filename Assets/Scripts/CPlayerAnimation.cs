@@ -29,6 +29,9 @@ public class CPlayerAnimation : MonoBehaviour {
 			case ANIM_TYPE.JUMP :
 				_animator.SetTrigger("Jump");
 				break;
+			case ANIM_TYPE.SMASH :
+				_animator.SetTrigger("Smash");
+				break;
 		}
 	}
 

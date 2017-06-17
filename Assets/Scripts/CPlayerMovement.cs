@@ -10,7 +10,7 @@ public class CPlayerMovement : MonoBehaviour
     float h;
     // 점프
     bool isJump = false;
-    float jumpPower = 700f;
+    float jumpPower = 500f;
     // 땅 접촉
     private bool isGround = false;
     public Transform groundCheck;
@@ -20,7 +20,7 @@ public class CPlayerMovement : MonoBehaviour
     public bool isRight = false;
     public Collider2D[] leftCol, rightCol;
 
-    float actionDelayTime = 1.2f;
+    float actionDelayTime = 0.8f;
     float actionTimer;
 
     // 애니메이션
@@ -37,15 +37,24 @@ public class CPlayerMovement : MonoBehaviour
         if (CGameManager.instance != null)
         {
             int stage = CGameManager.instance.stage;
-            if (stage == 2)
+            switch (stage)
             {
-                stageEvent = GetComponent<CBlinkEvent>();
-                stageEvent.enabled = true;
-            }
-            else if (stage == 3)
-            {
-                stageEvent = GetComponent<CBombEvent>();
-                stageEvent.enabled = true;
+                case 1 :
+                    stageEvent = GetComponent<CAttackEvent>();
+                    stageEvent.enabled = true;
+                    break;
+                case 2 :
+                    stageEvent = GetComponent<CBlinkEvent>();
+                    stageEvent.enabled = true;
+                    break;
+                case 3 :
+                    stageEvent = GetComponent<CBombEvent>();
+                    stageEvent.enabled = true;
+                    break;
+                case 4 :
+                    stageEvent = GetComponent<CSmashEvent>();
+                    stageEvent.enabled = true;
+                    break;
             }
         }
     }
@@ -96,8 +105,7 @@ public class CPlayerMovement : MonoBehaviour
             case 4:
                 if (actionTimer >= actionDelayTime)
                 {
-                    InputAction(CGameManager.instance.stage);
-
+                    stageEvent.StageEvent();
                     actionTimer = 0f;
                 }
                 break;
@@ -187,21 +195,10 @@ public class CPlayerMovement : MonoBehaviour
 
     }
 
-    void InputAction(int stage)
+    public void JumpUp()
     {
-        switch (stage)
-        {
-            case 1:
-                _anim.PlayAnimation(CPlayerAnimation.ANIM_TYPE.ATTACK);
-                break;
-            case 2:
-            case 3:
-                stageEvent.StageEvent();
-                break;
-            case 4:
-                Debug.Log("내리치기");
-                break;
-        }
+        _rigidbody2d.velocity = Vector3.zero;
+        _rigidbody2d.AddForce(Vector2.up * jumpPower * 1.2f);
     }
 
 }
