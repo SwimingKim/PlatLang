@@ -10,7 +10,7 @@ public class CPlayerMovement : MonoBehaviour
     float h;
     // 점프
     bool isJump = false;
-    float jumpPower = 500f;
+    float jumpPower = 600f;
     // 땅 접촉
     private bool isGround = false;
     public Transform groundCheck;
@@ -198,7 +198,10 @@ public class CPlayerMovement : MonoBehaviour
     public void JumpUp()
     {
         _rigidbody2d.velocity = Vector3.zero;
-        _rigidbody2d.AddForce(Vector2.up * jumpPower * 1.2f);
+        // _rigidbody2d.AddRelativeForce(Vector2.up * jumpPower * 1.01f, ForceMode2D.Impulse);
+        _rigidbody2d.AddForce(Vector2.up * jumpPower * 1.05f);
+        isJump = false;
     }
+
 
 }
