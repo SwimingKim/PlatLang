@@ -1589,6 +1589,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wordText: {fileID: 1587628927}
   starText: {fileID: 415746529}
+  langImage:
+  - {fileID: 1053971969}
+  - {fileID: 950903058}
+  engImg:
+  - {fileID: 21300000, guid: b8d24b340dd2d40ce9bca533a8baae30, type: 3}
+  - {fileID: 21300000, guid: 9d61ee31ed6c34f96ab9a2484cb95133, type: 3}
+  jpImg:
+  - {fileID: 21300000, guid: 9190c20fdaccd486c87b03278f8be2ab, type: 3}
+  - {fileID: 21300000, guid: 7bb61dfd5de1c4e11819eb4d2e499e05, type: 3}
+  chImg:
+  - {fileID: 21300000, guid: b539a65e9d70547978a6f4d3238c286e, type: 3}
+  - {fileID: 21300000, guid: b2a958994f1354571a898fb358386d4f, type: 3}
 --- !u!1 &1587628925
 GameObject:
   m_ObjectHideFlags: 0

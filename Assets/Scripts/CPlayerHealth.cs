@@ -70,7 +70,7 @@ public class CPlayerHealth : MonoBehaviour
             item.text = "도전 " + (isWin ? "성공" : "패배");
         }
         CGameManager.instance.starCount = int.Parse(stageManager.starText.text);
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(0.8f);
 
         CGameManager.instance.LoadScene(5);
     }
