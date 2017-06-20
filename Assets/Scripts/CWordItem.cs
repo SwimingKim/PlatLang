@@ -26,7 +26,7 @@ public class CWordItem : MonoBehaviour {
 
 			CPlayerManager playManager = other.GetComponent<CPlayerManager>();
 			playManager.WordEarnByManager(order);
-			Debug.LogFormat("별 {1} 갱신해야해요?", order, playManager.starCount);
+//			Debug.LogFormat("별 {1} 갱신해야해요?", order, playManager.starCount);
 			if (playManager.starCount >= 5)
 			{
 				googleManager.GooglePlayGamesAchievementAndLeaderboardCheck();

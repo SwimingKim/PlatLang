@@ -11,8 +11,11 @@ public class CGameManager : MonoBehaviour
 
     public int stage;
     public int lang;
+    public int starCount;
 
     string package = "com.androidsample.AndroidPlugin";
+
+    public string[] words = new string[5];
 
     void Awake()
     {
@@ -42,12 +45,6 @@ public class CGameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha3)) LoadScene(3);
         if (Input.GetKeyDown(KeyCode.Alpha4)) LoadScene(4);
         if (Input.GetKeyDown(KeyCode.Alpha5)) LoadScene(5);
-    }
-
-    public void GameEnd(bool isWin)
-    {
-        Debug.Log((isWin ? "승리" : "실패")+"로 종료");
-        LoadScene(5);
     }
 
     public void LoadScene(int SceneNum)

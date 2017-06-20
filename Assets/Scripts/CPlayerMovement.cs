@@ -148,6 +148,7 @@ public class CPlayerMovement : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
+        // Debug.Log(other.gameObject.name);
         if (other.gameObject.name == "EventItem")
         {
             eventButton.SetActive(true);
@@ -202,6 +203,5 @@ public class CPlayerMovement : MonoBehaviour
         _rigidbody2d.AddForce(Vector2.up * jumpPower * 1.05f);
         isJump = false;
     }
-
 
 }

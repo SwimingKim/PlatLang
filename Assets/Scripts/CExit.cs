@@ -10,7 +10,7 @@ public class CExit : MonoBehaviour {
 	{
 		if (other.name == "Gnome")
 		{
-			CGameManager.instance.GameEnd(true);			
+			other.SendMessage("GameEnd", true);
 		}
 	}
 

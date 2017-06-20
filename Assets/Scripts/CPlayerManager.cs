@@ -7,7 +7,8 @@ public class CPlayerManager : MonoBehaviour {
 	public GameObject stageManagerObj;
 
 	CLanguageManager langManager;
-	CStageManager stageManager;
+	[HideInInspector]
+	public CStageManager stageManager;
 
 	public int starCount
 	{

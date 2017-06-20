@@ -13,10 +13,6 @@ public class CPlayerDamage : MonoBehaviour {
 		_health = GetComponent<CPlayerHealth>();
 	}
 
-	void Update()
-	{
-	}
-
 	void OnCollisionEnter2D(Collision2D other)
 	{
 		if (other.gameObject.name == "Needle")

@@ -159,12 +159,13 @@ public class CLanguageManager : MonoBehaviour
             }
 
             // wordData 출력
-            // int k = 0;
-            // foreach (KeyValuePair<string, string> kvp in wordData)
-            // {
-            //     Debug.LogFormat("{2} : Key = {0}, Value = {1}", kvp.Key, kvp.Value, k);
-            //     k++;
-            // }
+            int k = 0;
+            foreach (KeyValuePair<string, string> kvp in wordData)
+            {
+                // Debug.LogFormat("{2} : Key = {0}, Value = {1}", kvp.Key, kvp.Value, k);
+                CGameManager.instance.words[k] = kvp.Value;
+                k++;
+            }
 
         }
         else

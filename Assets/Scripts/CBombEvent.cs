@@ -29,7 +29,7 @@ public class CBombEvent : CStageEvent
 		RaycastHit2D hit = Physics2D.Linecast(transform.position, endPos, 1 <<LayerMask.NameToLayer("BlockingLayer"));
         Debug.DrawLine(transform.position, endPos, Color.red);
 
-		if (hit.collider == null || hit.collider.tag == "BombBox") return false;
+		if (hit.collider == null || hit.collider.name == "Thurder") return false;
 
         Collider2D col = hit.collider;
         if (col != null)

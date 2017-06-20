@@ -16,7 +16,7 @@ public class CBombBox : MonoBehaviour
     {
         if (other.gameObject.name == "Gnome")
         {
-			SetBomb();
+            SetBomb();   
         }
     }
 
@@ -38,7 +38,12 @@ public class CBombBox : MonoBehaviour
             }
         }
 
-		Destroy(gameObject);
+        Vector2 startMon = new Vector2(transform.position.x - 0.6f, transform.position.y-0.2f);
+        Vector2 endMon = new Vector2(transform.position.x + 0.6f, transform.position.y-0.2f);
+        RaycastHit2D monCol = Physics2D.Linecast(startMon, endMon, 1<<LayerMask.NameToLayer("Monster"));
+        if (monCol.collider != null) Destroy(monCol.collider.gameObject);
+
+        Destroy(gameObject);
     }
 
     protected virtual void Destroy()

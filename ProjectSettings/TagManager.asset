@@ -16,6 +16,7 @@ TagManager:
   - Foreground
   - BombBox
   - TurnPoint
+  - Monster
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - 
   - Player
   - BlockingLayer
-  - 
+  - Monster
   - 
   - 
   - 
@@ -70,6 +71,9 @@ TagManager:
     locked: 0
   - name: Characters
     uniqueID: 3940858523
+    locked: 0
+  - name: Monster
+    uniqueID: 1150227807
     locked: 0
   - name: UI
     uniqueID: 771169021

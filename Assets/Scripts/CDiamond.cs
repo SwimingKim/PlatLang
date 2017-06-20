@@ -38,8 +38,12 @@ public class CDiamond : MonoBehaviour {
 		{
 			Destroy(gameObject);
 		}
+		else if (other.tag == "Monster")
+		{
+			other.SendMessage("Destroy");
+			Destroy(gameObject);
+		}
 	}
-
 
 	void Destroy()
 	{
