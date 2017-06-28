@@ -6,5 +6,8 @@
 - 스크린 화면
 ![스크린 이미지](screenshot2.png)
 
+- 게임하기  
+<http://skim.kr/gnome/index.html>
+
 - 동영상   
 [![동영상](https://img.youtube.com/vi/GV9oE9nGrYs/0.jpg)](https://www.youtube.com/watch?v=GV9oE9nGrYs)
