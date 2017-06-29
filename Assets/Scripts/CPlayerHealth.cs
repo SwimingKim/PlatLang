@@ -72,6 +72,7 @@ public class CPlayerHealth : MonoBehaviour
         CGameManager.instance.starCount = int.Parse(stageManager.starText.text);
         yield return new WaitForSeconds(0.8f);
 
+        CGameManager.instance.restartStage = CGameManager.instance.stage;
         CGameManager.instance.LoadScene(5);
     }
 

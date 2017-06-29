@@ -32,5 +32,10 @@ public class CEndManager : MonoBehaviour {
 			else langImage[i].sprite = jpImg[i];
 		}
 	}
+
+	public void OnRestartButtonClick()
+	{
+		CGameManager.instance.LoadScene(CGameManager.instance.restartStage);
+	}
 	
 }

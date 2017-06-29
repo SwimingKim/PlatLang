@@ -12,6 +12,7 @@ public class CGameManager : MonoBehaviour
     public int stage;
     public int lang;
     public int starCount;
+    public int restartStage;
 
     string package = "com.androidsample.AndroidPlugin";
 
